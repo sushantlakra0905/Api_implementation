@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:neww/model/user_dob.dart';
 import 'package:neww/model/user_location.dart';
 import 'package:neww/model/user_name.dart';
-import 'package:neww/model/user_picture.dart';
+import 'package:neww/model/user_picture.dart';  // Ensure this import is present
 
-class User{
+class User {
   final String gender;
   final String email;
   final String phone;
@@ -13,6 +13,7 @@ class User{
   final UserName name;
   final UserDob dob;
   final UserLocation location;
+  final UserPicture picture;  // Added this field
 
   User({
     required this.gender,
@@ -23,13 +24,14 @@ class User{
     required this.name,
     required this.dob,
     required this.location,
+    required this.picture,  // Added this to the constructor
   });
 
-  factory User.fromMap(Map<String,dynamic> e) {
+  factory User.fromMap(Map<String, dynamic> e) {
     final name = UserName.fromMap(e['name']);
     final dob = UserDob.fromMap(e['dob']);
     final location = UserLocation.fromMap(e['location']);
-    final picture = UserPicture.fromMap(e['picture']);
+    final picture = UserPicture.fromMap(e['picture']);  // This was already here
 
     return User(
       cell: e['cell'],
@@ -40,10 +42,11 @@ class User{
       name: name,
       dob: dob,
       location: location,
+      picture: picture,  // Added this to store the parsed picture
     );
   }
 
-  String get fullName{
+  String get fullName {
     return '${name.title} ${name.first} ${name.last}';
   }
 }
